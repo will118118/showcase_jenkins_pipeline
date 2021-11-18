@@ -1,5 +1,5 @@
 variable "ami_id" {
-  default = "ami-0ed961fa828560210"
+  default = "ami-0b3f070a579f165bd"
 }
 
 variable "snapshot_id" {

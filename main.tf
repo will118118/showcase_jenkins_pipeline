@@ -70,6 +70,11 @@ resource "aws_security_group" "allow_jenkins" {
   }
 }
 
+resource "aws_eip_association" "eip_assoc" {
+  instance_id   = aws_instance.jenkins.id
+  allocation_id = aws_eip.jenkins.id
+}
+
 resource "aws_instance" "jenkins" {
   ami           = var.ami_id
   instance_type = var.instance_type
@@ -84,4 +89,8 @@ resource "aws_instance" "jenkins" {
   depends_on = [
     aws_security_group.allow_jenkins
   ]
+}
+
+resource "aws_eip" "jenkins" {
+  vpc = true
 }
